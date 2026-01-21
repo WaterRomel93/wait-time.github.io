@@ -1,4 +1,3 @@
-# wait-time.github.io
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +12,13 @@
       background-color: #f8f9fa;
     }
 
-    h1 {
-      font-size: 48px;
+    h1 { font-size: 48px; }
+
+    .sub-title {
+      font-size: 28px;
+      font-weight: normal;
+      color: #6c757d;
+      margin-top: -10px;
     }
 
     #timer {
@@ -30,17 +34,17 @@
     }
   </style>
 </head>
+
 <body>
 
   <h1>Estimated Wait Time</h1>
+  <h2 class="sub-title">Future Wait Time</h2>
+
   <div id="timer">Loading...</div>
   <div class="label">Days : Hours : Minutes : Seconds</div>
 
   <script>
-    // 🔧 SET START DATE (now)
     const startDate = new Date();
-
-    // 🔧 ADD 3 MONTHS
     const endDate = new Date(startDate);
     endDate.setMonth(endDate.getMonth() + 3);
 
