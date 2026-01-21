@@ -1,2 +1,77 @@
 # wait-time.github.io
-Feature with time
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Estimated Wait Time</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 120px;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    #timer {
+      font-size: 72px;
+      font-weight: bold;
+      color: #e63946;
+      margin-top: 20px;
+    }
+
+    .label {
+      font-size: 24px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Estimated Wait Time</h1>
+  <div id="timer">Loading...</div>
+  <div class="label">Days : Hours : Minutes : Seconds</div>
+
+  <script>
+    // 🔧 SET START DATE (now)
+    const startDate = new Date();
+
+    // 🔧 ADD 3 MONTHS
+    const endDate = new Date(startDate);
+    endDate.setMonth(endDate.getMonth() + 3);
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = Math.floor((endDate - now) / 1000);
+
+      if (diff <= 0) {
+        document.getElementById("timer").innerText = "00 : 00 : 00 : 00";
+        clearInterval(timerInterval);
+        return;
+      }
+
+      const days = Math.floor(diff / 86400);
+      diff %= 86400;
+      const hours = Math.floor(diff / 3600);
+      diff %= 3600;
+      const minutes = Math.floor(diff / 60);
+      const seconds = diff % 60;
+
+      document.getElementById("timer").innerText =
+        `${days.toString().padStart(2, '0')} : ` +
+        `${hours.toString().padStart(2, '0')} : ` +
+        `${minutes.toString().padStart(2, '0')} : ` +
+        `${seconds.toString().padStart(2, '0')}`;
+    }
+
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+  </script>
+
+</body>
+</html>
+
